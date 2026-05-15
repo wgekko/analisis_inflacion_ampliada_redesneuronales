@@ -1,0 +1,581 @@
+
+/* animacion de botones;*/
+
+.st-hey-boton button{
+     
+  position: relative;
+    width: 200px;
+    height: 60px;
+    line-height:60px;
+    text-align:center;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    color:#fff;
+    font-size:20px;
+    border:1px solid #fff;
+    border-radius:30px;
+    transition: all 0.5s ease  ;
+}
+.st-key-boton button:before{
+  content:"";
+  position: absolute;
+  background: linear-gradient(to   right,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+   background-size:400%;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  width: 0%;
+  height: 100%;
+  transition:all 0.6s ease  ;
+  z-index: -1;
+  border-radius:30px;
+}
+.st-hey-boton button:after{
+   content:"";
+   background: linear-gradient(to   right,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+  background-size:400%;
+  position: absolute;
+  top:-5px;
+  right: -5px;
+  left: -5px;
+  bottom:-5px;
+  z-index: -1;
+  border-radius:40px;
+  filter: blur(20px);
+  opacity: 0;
+  transition:0.5s;
+}
+.st-hey-boton button:hover{
+  border:1px solid transparent;
+}
+.st-key-boton button:hover:before{
+    width: 100%;
+  animation:  a 8s linear Infinite;
+}
+.st-hey-boton button:hover:after{
+    opacity: 1;
+  filter: blur(20px);
+  animation:  a  8s linear Infinite;
+}
+
+
+/* animación de botones streamlit */
+/* animación de botones al pasar el mouse (hover) */
+/* Selector específico para el botón dentro del contenedor personalizado */
+
+.st-key-acceso button {
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+  line-height: 1;
+	border: none;  
+	border-radius: 999px;
+	position: relative;
+	color: white;
+	background: black;
+	isolate: isolate;
+	overflow: clip;
+	z-index: 0;
+	cursor: pointer;
+
+  position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+}
+
+.st-key-acceso button:hover {
+	--after-opacity: 1;
+}
+
+.st-key-acceso button::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -2;
+	border-radius: inherit;
+	background-image: radial-gradient(
+			circle at var(--blue-x, 50%) var(--blue-y, 50%),
+			#18346d 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--purple-x, 50%) var(--purple-y, 50%),
+			purple 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--red-x, 50%) var(--red-y, 50%),
+			red 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--orange-x, 50%) var(--orange-y, 50%),
+			orange 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--green-x, 50%) var(--green-y, 50%),
+			green 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--yellow-x, 50%) var(--yellow-y, 50%),
+			yellow 5%,
+			transparent 30%
+		);
+	background-size: 200% 200%;
+	background-repeat: no-repeat;
+	animation: moveGradients 10s linear infinite;
+}
+
+.st-key-acceso button::after {
+	content: "";
+	position: absolute;
+	inset: 2px;
+	border-radius: inherit;
+	background: black;
+	z-index: -1;
+	backdrop-filter: blur(var(--after-blur, 3px));
+	transition: opacity 500ms ease-in-out;
+	opacity: var(--after-opacity, 0);
+}
+
+/* Animación de fondo */
+@property --blue-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --blue-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --purple-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --purple-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --red-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --red-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --orange-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --orange-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --green-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --green-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --yellow-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --yellow-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+
+@keyframes moveGradients {
+	0%, 100% {
+		--blue-x: -40%; --blue-y: 35%;
+		--purple-x: 35%; --purple-y: -10%;
+		--red-x: -10%; --red-y: -80%;
+		--orange-x: 50%; --orange-y: 145%;
+		--green-x: 0%; --green-y: 80%;
+		--yellow-x: 35%; --yellow-y: 95%;
+	}
+	25% {
+		--blue-x: 30%; --blue-y: -25%;
+		--purple-x: 5%; --purple-y: 40%;
+		--red-x: 45%; --red-y: 150%;
+		--orange-x: -15%; --orange-y: 30%;
+		--green-x: 45%; --green-y: 15%;
+		--yellow-x: -20%; --yellow-y: -40%;
+	}
+	50% {
+		--blue-x: 70%; --blue-y: 50%;
+		--purple-x: 50%; --purple-y: 120%;
+		--red-x: 35%; --red-y: -80%;
+		--orange-x: 75%; --orange-y: -75%;
+		--green-x: 85%; --green-y: 100%;
+		--yellow-x: 50%; --yellow-y: -20%;
+	}
+	75% {
+		--blue-x: -25%; --blue-y: 10%;
+		--purple-x: 35%; --purple-y: -45%;
+		--red-x: -10%; --red-y: 30%;
+		--orange-x: 20%; --orange-y: -40%;
+		--green-x: -15%; --green-y: 50%;
+		--yellow-x: 45%; --yellow-y: -15%;
+	}
+}
+
+
+/* animacion de boton 2
+ */
+
+.st-key-acceso1 button {
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+  line-height: 1;
+	border: none;  
+	border-radius: 999px;
+	position: relative;
+	color: white;
+	background: black;
+	isolate: isolate;
+	overflow: clip;
+	z-index: 0;
+	cursor: pointer;
+
+  position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+}
+
+.st-key-acceso1 button:hover {
+	--after-opacity: 1;
+}
+
+.st-key-acceso1 button::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -2;
+	border-radius: inherit;
+	background-image: radial-gradient(
+			circle at var(--blue-x, 50%) var(--blue-y, 50%),
+			#18346d 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--purple-x, 50%) var(--purple-y, 50%),
+			purple 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--red-x, 50%) var(--red-y, 50%),
+			red 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--orange-x, 50%) var(--orange-y, 50%),
+			orange 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--green-x, 50%) var(--green-y, 50%),
+			green 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--yellow-x, 50%) var(--yellow-y, 50%),
+			yellow 5%,
+			transparent 30%
+		);
+	background-size: 200% 200%;
+	background-repeat: no-repeat;
+	animation: moveGradients 10s linear infinite;
+}
+
+.st-key-acceso1 button::after {
+	content: "";
+	position: absolute;
+	inset: 2px;
+	border-radius: inherit;
+	background: black;
+	z-index: -1;
+	backdrop-filter: blur(var(--after-blur, 3px));
+	transition: opacity 500ms ease-in-out;
+	opacity: var(--after-opacity, 0);
+}
+
+/* Animación de fondo */
+@property --blue-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --blue-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --purple-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --purple-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --red-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --red-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --orange-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --orange-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --green-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --green-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --yellow-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --yellow-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+
+@keyframes moveGradients {
+	0%, 100% {
+		--blue-x: -40%; --blue-y: 35%;
+		--purple-x: 35%; --purple-y: -10%;
+		--red-x: -10%; --red-y: -80%;
+		--orange-x: 50%; --orange-y: 145%;
+		--green-x: 0%; --green-y: 80%;
+		--yellow-x: 35%; --yellow-y: 95%;
+	}
+	25% {
+		--blue-x: 30%; --blue-y: -25%;
+		--purple-x: 5%; --purple-y: 40%;
+		--red-x: 45%; --red-y: 150%;
+		--orange-x: -15%; --orange-y: 30%;
+		--green-x: 45%; --green-y: 15%;
+		--yellow-x: -20%; --yellow-y: -40%;
+	}
+	50% {
+		--blue-x: 70%; --blue-y: 50%;
+		--purple-x: 50%; --purple-y: 120%;
+		--red-x: 35%; --red-y: -80%;
+		--orange-x: 75%; --orange-y: -75%;
+		--green-x: 85%; --green-y: 100%;
+		--yellow-x: 50%; --yellow-y: -20%;
+	}
+	75% {
+		--blue-x: -25%; --blue-y: 10%;
+		--purple-x: 35%; --purple-y: -45%;
+		--red-x: -10%; --red-y: 30%;
+		--orange-x: 20%; --orange-y: -40%;
+		--green-x: -15%; --green-y: 50%;
+		--yellow-x: 45%; --yellow-y: -15%;
+	}
+}
+
+/*animacion de boton 3 */
+
+.st-key-acceso2 button {
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+  line-height: 1;
+	border: none;  
+	border-radius: 999px;
+	position: relative;
+	color: white;
+	background: black;
+	isolate: isolate;
+	overflow: clip;
+	z-index: 0;
+	cursor: pointer;
+
+  position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+}
+
+.st-key-acceso2 button:hover {
+	--after-opacity: 1;
+}
+
+.st-key-acceso2 button::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -2;
+	border-radius: inherit;
+	background-image: radial-gradient(
+			circle at var(--blue-x, 50%) var(--blue-y, 50%),
+			#18346d 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--purple-x, 50%) var(--purple-y, 50%),
+			purple 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--red-x, 50%) var(--red-y, 50%),
+			red 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--orange-x, 50%) var(--orange-y, 50%),
+			orange 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--green-x, 50%) var(--green-y, 50%),
+			green 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--yellow-x, 50%) var(--yellow-y, 50%),
+			yellow 5%,
+			transparent 30%
+		);
+	background-size: 200% 200%;
+	background-repeat: no-repeat;
+	animation: moveGradients 10s linear infinite;
+}
+
+.st-key-acceso2 button::after {
+	content: "";
+	position: absolute;
+	inset: 2px;
+	border-radius: inherit;
+	background: black;
+	z-index: -1;
+	backdrop-filter: blur(var(--after-blur, 3px));
+	transition: opacity 500ms ease-in-out;
+	opacity: var(--after-opacity, 0);
+}
+
+/* Animación de fondo */
+@property --blue-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --blue-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --purple-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --purple-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --red-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --red-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --orange-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --orange-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --green-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --green-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --yellow-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --yellow-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+
+@keyframes moveGradients {
+	0%, 100% {
+		--blue-x: -40%; --blue-y: 35%;
+		--purple-x: 35%; --purple-y: -10%;
+		--red-x: -10%; --red-y: -80%;
+		--orange-x: 50%; --orange-y: 145%;
+		--green-x: 0%; --green-y: 80%;
+		--yellow-x: 35%; --yellow-y: 95%;
+	}
+	25% {
+		--blue-x: 30%; --blue-y: -25%;
+		--purple-x: 5%; --purple-y: 40%;
+		--red-x: 45%; --red-y: 150%;
+		--orange-x: -15%; --orange-y: 30%;
+		--green-x: 45%; --green-y: 15%;
+		--yellow-x: -20%; --yellow-y: -40%;
+	}
+	50% {
+		--blue-x: 70%; --blue-y: 50%;
+		--purple-x: 50%; --purple-y: 120%;
+		--red-x: 35%; --red-y: -80%;
+		--orange-x: 75%; --orange-y: -75%;
+		--green-x: 85%; --green-y: 100%;
+		--yellow-x: 50%; --yellow-y: -20%;
+	}
+	75% {
+		--blue-x: -25%; --blue-y: 10%;
+		--purple-x: 35%; --purple-y: -45%;
+		--red-x: -10%; --red-y: 30%;
+		--orange-x: 20%; --orange-y: -40%;
+		--green-x: -15%; --green-y: 50%;
+		--yellow-x: 45%; --yellow-y: -15%;
+	}
+}
+
+
+/*animacion de boton 3 */
+
+.st-key-acceso3 button {
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+  line-height: 1;
+	border: none;  
+	border-radius: 999px;
+	position: relative;
+	color: white;
+	background: black;
+	isolate: isolate;
+	overflow: clip;
+	z-index: 0;
+	cursor: pointer;
+
+  position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+}
+
+.st-key-acceso3 button:hover {
+	--after-opacity: 1;
+}
+
+.st-key-acceso3 button::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -2;
+	border-radius: inherit;
+	background-image: radial-gradient(
+			circle at var(--blue-x, 50%) var(--blue-y, 50%),
+			#18346d 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--purple-x, 50%) var(--purple-y, 50%),
+			purple 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--red-x, 50%) var(--red-y, 50%),
+			red 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--orange-x, 50%) var(--orange-y, 50%),
+			orange 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--green-x, 50%) var(--green-y, 50%),
+			green 5%,
+			transparent 30%
+		),
+		radial-gradient(
+			circle at var(--yellow-x, 50%) var(--yellow-y, 50%),
+			yellow 5%,
+			transparent 30%
+		);
+	background-size: 200% 200%;
+	background-repeat: no-repeat;
+	animation: moveGradients 10s linear infinite;
+}
+
+.st-key-acceso3 button::after {
+	content: "";
+	position: absolute;
+	inset: 2px;
+	border-radius: inherit;
+	background: black;
+	z-index: -1;
+	backdrop-filter: blur(var(--after-blur, 3px));
+	transition: opacity 500ms ease-in-out;
+	opacity: var(--after-opacity, 0);
+}
+
+/* Animación de fondo */
+@property --blue-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --blue-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --purple-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --purple-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --red-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --red-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --orange-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --orange-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --green-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --green-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --yellow-x { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+@property --yellow-y { syntax: "<percentage>"; initial-value: 50%; inherits: false; }
+
+@keyframes moveGradients {
+	0%, 100% {
+		--blue-x: -40%; --blue-y: 35%;
+		--purple-x: 35%; --purple-y: -10%;
+		--red-x: -10%; --red-y: -80%;
+		--orange-x: 50%; --orange-y: 145%;
+		--green-x: 0%; --green-y: 80%;
+		--yellow-x: 35%; --yellow-y: 95%;
+	}
+	25% {
+		--blue-x: 30%; --blue-y: -25%;
+		--purple-x: 5%; --purple-y: 40%;
+		--red-x: 45%; --red-y: 150%;
+		--orange-x: -15%; --orange-y: 30%;
+		--green-x: 45%; --green-y: 15%;
+		--yellow-x: -20%; --yellow-y: -40%;
+	}
+	50% {
+		--blue-x: 70%; --blue-y: 50%;
+		--purple-x: 50%; --purple-y: 120%;
+		--red-x: 35%; --red-y: -80%;
+		--orange-x: 75%; --orange-y: -75%;
+		--green-x: 85%; --green-y: 100%;
+		--yellow-x: 50%; --yellow-y: -20%;
+	}
+	75% {
+		--blue-x: -25%; --blue-y: 10%;
+		--purple-x: 35%; --purple-y: -45%;
+		--red-x: -10%; --red-y: 30%;
+		--orange-x: 20%; --orange-y: -40%;
+		--green-x: -15%; --green-y: 50%;
+		--yellow-x: 45%; --yellow-y: -15%;
+	}
+}

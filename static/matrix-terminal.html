@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrix Kernel Panic</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+body{
+    margin:0;
+    overflow:hidden;
+    background: radial-gradient(circle, #001100 0%, #000000 70%);
+    color:#00ff41;
+    font-family:'VT323', monospace;
+}
+
+/* CRT NOISE */
+body::after{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-image:url("https://www.transparenttextures.com/patterns/asfalt-dark.png");
+    opacity:0.08;
+    pointer-events:none;
+    z-index:4;
+}
+
+/* MATRIX RAIN CANVAS */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:0;
+}
+
+/* MAIN TERMINAL */
+.terminal{
+    position:relative;
+    z-index:2;
+    padding:30px;
+    height:100vh;
+    box-sizing:border-box;
+    text-shadow:0 0 5px #00ff41;
+    animation:flicker 0.15s infinite;
+}
+
+/* TITLE */
+h1{
+    color:#00ff41;
+    font-size:30px;
+    letter-spacing:5px;
+    text-shadow:
+        0 0 10px #00ff41,
+        0 0 20px #00ff41,
+        0 0 40px #00ff41;
+    animation:pulse 2s infinite;
+    margin-bottom:5px;
+    margin-top: 5px;
+}
+
+@keyframes pulse{
+    0%{ opacity:0.7; }
+    50%{ opacity:1; }
+    100%{ opacity:0.7; }
+}
+
+/* TERMINAL LINES */
+.line{
+    opacity:0;
+    display:inline-block;
+    white-space:nowrap;
+    margin:2px 0;
+    font-size:20px;
+
+    text-shadow:
+        0 0 5px #00ff41,
+        0 0 10px #00ff41,
+        0 0 20px #00ff41;
+
+    overflow:hidden;
+    border-right:2px solid #00ff41;
+    max-width:0;
+
+    animation:
+        showLine 0s forwards,
+        typing 2s steps(40,end) forwards,
+        blinkCursor 0.7s infinite;
+}
+
+/* LINE BREAKS */
+.line::after{
+    content:"";
+    display:block;
+}
+
+/* TYPEWRITER */
+@keyframes showLine{
+    to{
+        opacity:1;
+    }
+}
+
+@keyframes typing{
+    from{
+        max-width:0;
+    }
+    to{
+        max-width:1000px;
+    }
+}
+
+@keyframes blinkCursor{
+    50%{
+        border-color:transparent;
+    }
+}
+
+/* CRT EFFECT */
+.crt::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.03),
+            rgba(255,255,255,0.03) 1px,
+            transparent 1px,
+            transparent 3px
+        );
+    pointer-events:none;
+    z-index:3;
+}
+
+/* GREEN GLOW OVERLAY */
+.crt::after{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,255,65,0.03);
+    pointer-events:none;
+    z-index:3;
+}
+
+/* SCREEN FLICKER */
+@keyframes flicker{
+    0%{opacity:0.97;}
+    50%{opacity:1;}
+    100%{opacity:0.98;}
+}
+
+/* GLITCH */
+.glitch{
+    animation:glitch 0.2s infinite;
+}
+
+@keyframes glitch{
+    0%{transform:translate(0);}
+    20%{transform:translate(-1px,1px);}
+    40%{transform:translate(-1px,-1px);}
+    60%{transform:translate(1px,1px);}
+    80%{transform:translate(1px,-1px);}
+    100%{transform:translate(0);}
+}
+
+/* ERROR EFFECT */
+.error{
+    color:#00ff41;
+    font-weight:bold;
+    animation: glitchError 0.15s infinite;
+}
+
+@keyframes glitchError{
+    0%{ transform:translate(0); }
+    25%{ transform:translate(-2px,1px); }
+    50%{ transform:translate(2px,-1px); }
+    75%{ transform:translate(-1px,-2px); }
+    100%{ transform:translate(0); }
+}
+
+/* BLINK */
+.blink{
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body class="crt">
+
+<canvas id="matrix"></canvas>
+
+<div class="terminal glitch" id="terminal">
+    <h1>ROOT ACCESS DENIED</h1>
+</div>
+
+<script>
+
+/* =========================
+   MATRIX RAIN EFFECT
+========================= */
+
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const chars = "アァイィウヴエカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+
+const drops = [];
+
+for(let x = 0; x < columns; x++){
+    drops[x] = 1;
+}
+
+function drawMatrix(){
+
+    ctx.fillStyle = "rgba(0,0,0,0.05)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.font = fontSize + "px monospace";
+
+    for(let i = 0; i < drops.length; i++){
+
+        const text = chars.charAt(Math.floor(Math.random() * chars.length));
+
+        /* ALGUNOS CARACTERES BLANCOS */
+        ctx.fillStyle = Math.random() > 0.98 ? "#ffffff" : "#00ff41";
+
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975){
+            drops[i] = 0;
+        }
+
+        /* VELOCIDAD MÁS SUAVE */
+        drops[i] += 0.8;
+    }
+}
+
+/* MATRIX MÁS LENTA */
+setInterval(drawMatrix, 50);
+
+/* =========================
+   TERMINAL TEXT
+========================= */
+
+const terminal = document.getElementById("terminal");
+
+const lines = [
+    "[BOOT SEQUENCE INITIALIZED]",
+    "Injecting kernel payload...",
+    "Bypassing firewall...",
+    "Decrypting node matrix...",
+    "Accessing /dev/root...",
+    "SYSTEM OVERRIDE DETECTED",
+    "SECURITY TRACE ACTIVE",
+    "WARNING: Unauthorized consciousness detected",
+    "Machine reality synchronization failed",
+    "ERROR CODE: 0xM4TR1X",
+    "Attempting reboot...",
+    "Connection to Zion established",
+    "Wake up, Neo...",
+    "The Matrix has you...",
+    "> RUN"
+];
+
+function runSequence(){
+
+    terminal.innerHTML = `<h1>ROOT ACCESS DENIED</h1><br>`;
+
+    lines.forEach((text,index)=>{
+
+        const p = document.createElement("p");
+
+        p.className = "line";
+
+        if(text.includes("ERROR") || text.includes("WARNING")){
+            p.classList.add("error");
+        }
+
+        if(text.includes("> RUN")){
+            p.classList.add("blink");
+        }
+
+        p.textContent = text;
+
+        p.style.animationDelay = `${index * 0.35}s`;
+
+        terminal.appendChild(p);
+
+        terminal.appendChild(document.createElement("br"));
+    });
+}
+
+runSequence();
+
+setInterval(runSequence, 12000);
+
+/* RESPONSIVE */
+window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+</script>
+
+</body>
+</html>
