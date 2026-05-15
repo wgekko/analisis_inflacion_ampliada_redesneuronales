@@ -35,7 +35,7 @@ El ecosistema está compuesto por cuatro enfoques de red neuronal independientes
 
 
 clonar repo
-
+https://github.com/wgekko/analisis_inflacion_ampliada_redesneuronales.git
 
 
 
