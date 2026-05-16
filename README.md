@@ -23,7 +23,7 @@ El ecosistema está compuesto por cuatro enfoques de red neuronal independientes
 
 ## Estructura del Proyecto
 
-```text
+
 ├── data/
 │   └── ipc.xlsx                 # Archivo de datos fuente (Índices IPC)
 ├── ModeloTransformer.py         # Tablero predictivo con arquitectura Transformer
@@ -36,6 +36,11 @@ El ecosistema está compuesto por cuatro enfoques de red neuronal independientes
 
 clonar repo
 https://github.com/wgekko/analisis_inflacion_ampliada_redesneuronales.git
+
+video demo 
+
+
+https://github.com/user-attachments/assets/11194357-712b-46f0-a670-51aecad1a7c1
 
 
 
